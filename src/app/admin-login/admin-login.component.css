@@ -1,0 +1,10 @@
+.myflex { 
+    background-image: linear-gradient(to bottom, #43C6AC, #1c1950);
+}
+
+.input-group-text {
+    padding: .625rem .75rem;
+}
+.navbar-search .input-group .input-group-text {
+    padding-left: 1rem;
+}

@@ -1,0 +1,104 @@
+
+
+<div class="container">
+    <form>
+        <div class="form-group" #userform="ngForm" [formGroup]="teachersValidation">
+          <label for="exampleInputEmail1">user name</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" 
+          [(ngModel)]="teachers.userName" name="userName" placeholder="Enter User Name" formControlName="userName">
+          <div *ngIf="(validations.userName.invalid && validations.userName.touched) || validations.userName.dirty">
+              <small *ngIf="validations.userName.errors?.required" class="text-danger">Name is required</small>
+              <!--question mark(?) is a safe navigation operator-->
+              <small *ngIf="validations.userName.errors?.pattern" class="text-danger">Please provide a valid password</small>
+            </div>
+        </div>
+
+        <div class="form-group" #userform="ngForm" [formGroup]="teachersValidation">
+          <label for="exampleInputEmail1">Full Name</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" 
+          [(ngModel)]="teachers.fullName" name="fullName" placeholder="Enter User Name" formControlName="fullName">
+          <div *ngIf="(validations.fullName.invalid && validations.fullName.touched) || validations.fullName.dirty">
+              <small *ngIf="validations.fullName.errors?.required" class="text-danger">Full Name is required</small>
+              <!--question mark(?) is a safe navigation operator-->
+            </div>
+        </div>
+
+        <!-- <div class="form-group" #userform="ngForm" [formGroup]="teachersValidation">
+          <label for="exampleInputEmail1">Branch</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" 
+          [(ngModel)]="teachers.branch" name="branch" placeholder="Enter Branch" formControlName="branch">
+          <div *ngIf="(validations.branch.invalid && validations.branch.touched) || validations.branch.dirty">
+              <small *ngIf="validations.branch.errors?.required" class="text-danger">Branch is required</small>
+              
+            </div>
+        </div> -->
+
+
+              <div class="form-group" #userform="ngForm" [formGroup]="teachersValidation">
+                <mat-form-field>
+                  <mat-label>Select Branch</mat-label>
+                  <mat-select [(ngModel)]="teachers.branch" name="branch" formControlName="branch"
+                  (selectionChange)="branchChanges($event.value)">
+                    <mat-option *ngFor="let branch of branchs" [value]="branch.value">
+                      {{branch.viewValue}}
+                    </mat-option>
+                  </mat-select>
+                  <div *ngIf="(validations.branch.invalid && validations.branch.touched) || validations.branch.dirty">
+                    <small *ngIf="validations.branch.errors?.required" class="text-danger">Branch is required</small>
+                  </div>
+                </mat-form-field>
+              </div>
+              
+
+
+              <div class="form-group" #userform="ngForm" [formGroup]="teachersValidation">
+                <mat-form-field>
+                  <mat-label>Select Subject</mat-label>
+                  <mat-select [(ngModel)]="teachers.subject" name="subject" formControlName="subject">
+                    <mat-option *ngFor="let subject of subjects" [value]="subject.value">
+                      {{subject.viewValue}}
+                    </mat-option>
+                  </mat-select>
+                  <div *ngIf="(validations.subject.invalid && validations.subject.touched) || validations.subject.dirty">
+                    <small *ngIf="validations.subject.errors?.required" class="text-danger">Subject is required</small>
+                  </div>
+                </mat-form-field>
+              </div>
+
+
+        <div class="form-group" #userform="ngForm" [formGroup]="teachersValidation">
+          <label for="exampleInputEmail1">Semester</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" 
+          [(ngModel)]="teachers.semester" name="semester" placeholder="Enter semester" formControlName="semester">
+          <div *ngIf="(validations.semester.invalid && validations.semester.touched) || validations.semester.dirty">
+              <small *ngIf="validations.semester.errors?.required" class="text-danger">Semester is required</small>
+              <!--question mark(?) is a safe navigation operator-->
+            </div>
+        </div>
+
+        <div class="form-group" #userform="ngForm" [formGroup]="teachersValidation">
+          <label for="exampleInputEmail1">Password</label>
+          <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" 
+          [(ngModel)]="teachers.password" name="password" placeholder="Enter password" formControlName="password">
+          <div *ngIf="(validations.password.invalid && validations.password.touched) || validations.password.dirty">
+              <small *ngIf="validations.password.errors?.required" class="text-danger">Password is required</small>
+              <!--question mark(?) is a safe navigation operator-->
+              <small *ngIf="validations.password.errors?.pattern" class="text-danger">Please provide a valid password</small>
+            </div>
+        </div>
+          <!-- test content -->
+
+          <div class="form-group" #userform="ngForm" [formGroup]="teachersValidation">
+          <label for="exampleInputEmail1">Confirm Password</label>
+          <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" 
+          name="password" placeholder="Enter password" formControlName="confirmPassword">
+          <div *ngIf="(validations.confirmPassword.invalid && validations.confirmPassword.touched) || validations.confirmPassword.dirty">
+              <small *ngIf="validations.confirmPassword.errors?.required" class="text-danger">Confirm Password is required</small>
+              <!--question mark(?) is a safe navigation operator-->
+              <small *ngIf="teachersValidation.hasError('passwordNotMatch')" class="text-danger">password donot match</small>
+            </div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary" (click)="displayDetails()" [disabled]="userform.invalid">Submit</button>
+      </form>
+</div>

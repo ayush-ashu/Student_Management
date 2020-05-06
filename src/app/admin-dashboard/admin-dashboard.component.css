@@ -1,0 +1,13 @@
+body {
+    background: none !important;
+}
+
+.welcome-text {
+    display: block;
+margin: auto;
+padding: 10px;
+}
+.breadcrumb-item .add-teacher-button {
+    border: none !important;
+    background: none !important;
+}
